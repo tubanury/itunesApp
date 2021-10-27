@@ -7,15 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		187EE43B2728535C00EE10A5 /* MusicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187EE43A2728535C00EE10A5 /* MusicCell.swift */; };
+		187EE43D2728538B00EE10A5 /* Music.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187EE43C2728538B00EE10A5 /* Music.swift */; };
+		187EE4402728541C00EE10A5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187EE43F2728541C00EE10A5 /* Extensions.swift */; };
+		187EE442272854DB00EE10A5 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187EE441272854DB00EE10A5 /* MainController.swift */; };
+		18BCEF892729A93600ECE6E1 /* DefaultNetworkOperationPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 18BCEF882729A93600ECE6E1 /* DefaultNetworkOperationPackage */; };
 		18F256BE27272948002F8313 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F256BD27272948002F8313 /* AppDelegate.swift */; };
 		18F256C027272948002F8313 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F256BF27272948002F8313 /* SceneDelegate.swift */; };
 		18F256C227272948002F8313 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F256C127272948002F8313 /* ViewController.swift */; };
-		18F256C527272948002F8313 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18F256C327272948002F8313 /* Main.storyboard */; };
 		18F256C72727294C002F8313 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18F256C62727294C002F8313 /* Assets.xcassets */; };
 		18F256CA2727294C002F8313 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18F256C82727294C002F8313 /* LaunchScreen.storyboard */; };
 		18F256D52727294D002F8313 /* FinalProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F256D42727294D002F8313 /* FinalProjectTests.swift */; };
 		18F256DF2727294D002F8313 /* FinalProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F256DE2727294D002F8313 /* FinalProjectUITests.swift */; };
 		18F256E12727294D002F8313 /* FinalProjectUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F256E02727294D002F8313 /* FinalProjectUITestsLaunchTests.swift */; };
+		18F256EF27272F82002F8313 /* MainViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F256EE27272F82002F8313 /* MainViewBuilder.swift */; };
+		18F256F127272F9A002F8313 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F256F027272F9A002F8313 /* MainViewController.swift */; };
+		18F256F327272FA5002F8313 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F256F227272FA5002F8313 /* MainViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,11 +43,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		187EE43A2728535C00EE10A5 /* MusicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicCell.swift; sourceTree = "<group>"; };
+		187EE43C2728538B00EE10A5 /* Music.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Music.swift; sourceTree = "<group>"; };
+		187EE43F2728541C00EE10A5 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		187EE441272854DB00EE10A5 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		18F256BA27272948002F8313 /* FinalProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinalProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18F256BD27272948002F8313 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18F256BF27272948002F8313 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		18F256C127272948002F8313 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		18F256C427272948002F8313 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		18F256C62727294C002F8313 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18F256C92727294C002F8313 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		18F256CB2727294C002F8313 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +59,9 @@
 		18F256DA2727294D002F8313 /* FinalProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FinalProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		18F256DE2727294D002F8313 /* FinalProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalProjectUITests.swift; sourceTree = "<group>"; };
 		18F256E02727294D002F8313 /* FinalProjectUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalProjectUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		18F256EE27272F82002F8313 /* MainViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewBuilder.swift; sourceTree = "<group>"; };
+		18F256F027272F9A002F8313 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		18F256F227272FA5002F8313 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18BCEF892729A93600ECE6E1 /* DefaultNetworkOperationPackage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +90,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		187EE4362728530A00EE10A5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				187EE43A2728535C00EE10A5 /* MusicCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		187EE4372728531300EE10A5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				187EE43C2728538B00EE10A5 /* Music.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		187EE4382728531A00EE10A5 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				187EE441272854DB00EE10A5 /* MainController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		187EE43E2728540E00EE10A5 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				187EE43F2728541C00EE10A5 /* Extensions.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		18F256B127272948002F8313 = {
 			isa = PBXGroup;
 			children = (
@@ -99,10 +145,14 @@
 		18F256BC27272948002F8313 /* FinalProject */ = {
 			isa = PBXGroup;
 			children = (
+				187EE43E2728540E00EE10A5 /* Utils */,
+				187EE4372728531300EE10A5 /* Model */,
+				187EE4362728530A00EE10A5 /* View */,
+				187EE4382728531A00EE10A5 /* Controller */,
+				18F256ED27272F5B002F8313 /* Main */,
 				18F256BD27272948002F8313 /* AppDelegate.swift */,
 				18F256BF27272948002F8313 /* SceneDelegate.swift */,
 				18F256C127272948002F8313 /* ViewController.swift */,
-				18F256C327272948002F8313 /* Main.storyboard */,
 				18F256C62727294C002F8313 /* Assets.xcassets */,
 				18F256C82727294C002F8313 /* LaunchScreen.storyboard */,
 				18F256CB2727294C002F8313 /* Info.plist */,
@@ -127,6 +177,16 @@
 			path = FinalProjectUITests;
 			sourceTree = "<group>";
 		};
+		18F256ED27272F5B002F8313 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				18F256EE27272F82002F8313 /* MainViewBuilder.swift */,
+				18F256F027272F9A002F8313 /* MainViewController.swift */,
+				18F256F227272FA5002F8313 /* MainViewModel.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -143,6 +203,9 @@
 			dependencies = (
 			);
 			name = FinalProject;
+			packageProductDependencies = (
+				18BCEF882729A93600ECE6E1 /* DefaultNetworkOperationPackage */,
+			);
 			productName = FinalProject;
 			productReference = 18F256BA27272948002F8313 /* FinalProject.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +278,9 @@
 				Base,
 			);
 			mainGroup = 18F256B127272948002F8313;
+			packageReferences = (
+				18BCEF872729A93500ECE6E1 /* XCRemoteSwiftPackageReference "DefaultNetworkOperationPackage" */,
+			);
 			productRefGroup = 18F256BB27272948002F8313 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -233,7 +299,6 @@
 			files = (
 				18F256CA2727294C002F8313 /* LaunchScreen.storyboard in Resources */,
 				18F256C72727294C002F8313 /* Assets.xcassets in Resources */,
-				18F256C527272948002F8313 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,8 +324,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				18F256C227272948002F8313 /* ViewController.swift in Sources */,
+				187EE4402728541C00EE10A5 /* Extensions.swift in Sources */,
 				18F256BE27272948002F8313 /* AppDelegate.swift in Sources */,
+				187EE43B2728535C00EE10A5 /* MusicCell.swift in Sources */,
+				187EE442272854DB00EE10A5 /* MainController.swift in Sources */,
 				18F256C027272948002F8313 /* SceneDelegate.swift in Sources */,
+				18F256EF27272F82002F8313 /* MainViewBuilder.swift in Sources */,
+				18F256F127272F9A002F8313 /* MainViewController.swift in Sources */,
+				18F256F327272FA5002F8313 /* MainViewModel.swift in Sources */,
+				187EE43D2728538B00EE10A5 /* Music.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,14 +369,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		18F256C327272948002F8313 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				18F256C427272948002F8313 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		18F256C82727294C002F8313 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -443,7 +507,6 @@
 				INFOPLIST_FILE = FinalProject/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -470,7 +533,6 @@
 				INFOPLIST_FILE = FinalProject/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -618,6 +680,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		18BCEF872729A93500ECE6E1 /* XCRemoteSwiftPackageReference "DefaultNetworkOperationPackage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/erkutbas/DefaultNetworkOperationPackage.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		18BCEF882729A93600ECE6E1 /* DefaultNetworkOperationPackage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 18BCEF872729A93500ECE6E1 /* XCRemoteSwiftPackageReference "DefaultNetworkOperationPackage" */;
+			productName = DefaultNetworkOperationPackage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 18F256B227272948002F8313 /* Project object */;
 }
