@@ -12,7 +12,7 @@ import DefaultNetworkOperationPackage
 private let reuseIdentifier = "MusicCell"
 class MainController: UICollectionViewController{
     
-    //var musics = [Music]()
+    var songs = SongResponse(resultCount: 0, results: [])
     
     //MARK: Init
     let searchBar = UISearchBar()
@@ -38,6 +38,10 @@ class MainController: UICollectionViewController{
                     print(error)
                 case .success(let response):
                     print(response)
+                    DispatchQueue.main.async {
+                        self.songs = response
+                        self.collectionView.reloadData()
+                    }
                 }
             }
             
@@ -49,7 +53,7 @@ class MainController: UICollectionViewController{
         APIManager.shared.executeRequest(urlRequest: request, completion: completion)
     }
     
-    
+   
 
     
     // MARK: Helper Function
@@ -57,11 +61,11 @@ class MainController: UICollectionViewController{
         searchBar.sizeToFit()
         searchBar.delegate = self
         collectionView.backgroundColor = .white
-        navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.9411764706, green: 0.4705882353, blue: 0.3921568627, alpha: 1)
+        navigationController?.navigationBar.barTintColor = .white
         navigationItem.titleView?.tintColor = .white
         navigationController?.navigationBar.barStyle = .black
         navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.tintColor = .blue
+        navigationController?.navigationBar.tintColor = .white
         //navigationItem.title = "Itunes"
         navigationItem.titleView = searchBar
         searchBar.becomeFirstResponder() //gerekli mi????
@@ -76,12 +80,13 @@ class MainController: UICollectionViewController{
 
 extension MainController{
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 9
+        return songs.resultCount
     }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! MusicCell
-        //cell.music = musics[indexPath.item]
+        //cell.song = songs[indexPath.item]
         
+        cell.song = songs.results[indexPath.item]
         return cell
     }
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -97,8 +102,9 @@ extension MainController: UICollectionViewDelegateFlowLayout{
         return UIEdgeInsets(top: 32, left: 8, bottom: 8, right: 8)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+      
         let width = (view.frame.width - 36)/2
-        return CGSize(width: width, height: width/1.5)
+        return CGSize(width: width, height: width*1.35)
     }
 }
 

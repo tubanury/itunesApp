@@ -19,7 +19,7 @@ class SongViewModel: Identifiable, ObservableObject{
     
     init(song: Song){
         
-        self.id = song.id
+        self.id = song.trackId
         self.collectionName = song.collectionName
         
     }
@@ -32,16 +32,16 @@ class SonglistViewModel: ObservableObject {
     
     
     
-    private let dataModel: SongResponse = SongResponse()
+    //private let dataModel: SongResponse = SongResponse()
     private var disposables = Set<AnyCancellable>()
     
 
     init(){
-        $searchTerm.sink(receiveValue: loadSongs(searchTerm:)).store(in: &disposables)
+       
     }
 
 
-    private func loadSongs(searchTerm: String){
+    private func loadSongs(){
         songs.removeAll()
         /*dataModel.loadSongs(searchTerm: searchTerm){ songs in
             songs.forEach {self.appendsong(song: $0)}

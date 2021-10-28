@@ -9,14 +9,22 @@ import Foundation
 import UIKit
 class MusicCell: UICollectionViewCell{
     
-    /*var music: Music?{
+    var song: Song?{
         didSet{
-            nameLabel.text = music?.name?.capitalized
-            imageView.image = music?.image
-          
+            nameLabel.text = (song?.trackName ?? "")
+            artistLabel.text = (song?.artistName ?? "")
+
+            print(song?.trackName ?? "")
+           // imageView.image = song?.image
+            fetchImage(withUrlString: song?.artworkUrl100 ?? "") { image in
+                DispatchQueue.main.async {
+                    self.imageView.image = image
+                }
+                
+            }
         }
         
-    }*/
+    }
     
     private lazy var shadowContainerView: UIView = {
         let view = UIView()
@@ -31,42 +39,70 @@ class MusicCell: UICollectionViewCell{
     }()
     var imageView: UIImageView = {
        let iv = UIImageView()
-        //iv.backgroundColor = .groupTableViewBackground
-        iv.backgroundColor = #colorLiteral(red: 0.2050352991, green: 0.770994544, blue: 0.3534177542, alpha: 1)
         iv.contentMode = .scaleAspectFit
+        iv.backgroundColor = .clear
+        iv.clipsToBounds = true
+        iv.layer.cornerRadius = 10
         return iv
     }()
     
     lazy var mainContainerView: UIView = {
         let temp = UIView()
-        temp.backgroundColor = #colorLiteral(red: 0.2050352991, green: 0.770994544, blue: 0.3534177542, alpha: 1)
-        temp.addSubview(containerView)
+        temp.backgroundColor = .systemBackground
+        //temp.addSubview(containerView)
         
-        containerView.center(inView: temp)
+        //containerView.center(inView: temp)
+        temp.addSubview(stackView)
+        stackView.center(inView: temp)
         return temp
     }()
     
-   
+    lazy var stackView: UIStackView = {
+        let temp = UIStackView(arrangedSubviews: [nameLabel, artistLabel])
+        temp.translatesAutoresizingMaskIntoConstraints = false
+        temp.alignment = .center
+        temp.distribution = .fill
+        temp.axis = .vertical
+        temp.spacing = 3
+        return temp
+        
+    }()
+    
     private lazy var containerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.cornerRadius = 6
         view.clipsToBounds = true
         view.backgroundColor = .white.withAlphaComponent(0.4)
-        view.addSubview(nameLabel)
+        //view.addSubview(nameLabel)
         view.layer.cornerRadius = 10
-        nameLabel.center(inView: view)
+        //nameLabel.center(inView: view)
+        //nameLabel.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 12, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         return view
     }()
    
     let nameLabel: UILabel = {
        let temp = UILabel()
-        temp.textColor = .white
+        temp.textColor = .black
         temp.font = UIFont.systemFont(ofSize: 16)
         temp.text = "Some Music"
-        temp.layer.masksToBounds = true
-        temp.layer.cornerRadius = 10
-        temp.backgroundColor = .white.withAlphaComponent(0.4)
+        temp.numberOfLines = 2
+        //temp.layer.masksToBounds = true
+        //temp.layer.cornerRadius = 10
+        //temp.backgroundColor = .white.withAlphaComponent(0.4)
+        temp.textAlignment = .center
+        
+        return temp
+    }()
+    let artistLabel: UILabel = {
+       let temp = UILabel()
+        temp.textColor = .secondaryLabel
+        temp.font = UIFont.systemFont(ofSize: 16)
+        temp.text = "Some Music"
+        temp.numberOfLines = 2
+        //temp.layer.masksToBounds = true
+        //temp.layer.cornerRadius = 10
+        //temp.backgroundColor = .white.withAlphaComponent(0.4)
         temp.textAlignment = .center
         
         return temp
@@ -98,5 +134,23 @@ class MusicCell: UICollectionViewCell{
 
         imageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: self.frame.height - 32)
         
+    }
+    
+    
+    private func fetchImage(withUrlString urlString: String, completion: @escaping(UIImage)->()){
+        
+        guard let url  = URL(string: urlString) else {return}
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            if let error =  error {
+                print ("fetchin image error", error.localizedDescription)
+                return
+            }
+            
+            guard let data  = data  else {return}
+            guard let image = UIImage(data: data) else {return}
+            
+            completion(image)
+        }.resume()
     }
 }

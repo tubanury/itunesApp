@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import UIKit
 class SongResponse: Codable {
     
     /*public let data: SongListData
@@ -16,7 +16,14 @@ class SongResponse: Codable {
     
     
     //private var dataTask: URLSessionDataTask?
+    public let resultCount: Int
+    public let results: [Song]
     
+    public init(resultCount: Int, results: [Song]){
+       
+        self.resultCount = resultCount
+        self.results = results
+    }
     
     
    /* func loadSongs(searchTerm: String, completion: @escaping(([Song]) -> Void)) {
@@ -60,31 +67,32 @@ class SongResponse: Codable {
     
 }
 }
-public struct SongList: Codable {
+/*public struct SongList: Codable {
     
-    public let limit, total, count: Int
-    public let results: [Song]
+    public let count: Int?
+    public let results: [Song]?
     
-    public init(limit: Int, total: Int, count: Int, results: [Song]){
-        self.limit = limit
-        self.total = total
+    public init(count: Int, results: [Song]){
+       
         self.count = count
         self.results = results
     }
-}
+}*/
 
 public struct Song: Codable {
     
-    public let id: Int
-    public let name: String
+    public let trackId: Int
+    public let trackName: String
+    public let artistName: String
+
     public let artworkUrl100: String
-    public let collectionPrice: Int
+    public let collectionPrice: Double
     public let collectionName: String
     
-    
-    public init(id: Int, name: String, artworkUrl100: String, collectionPrice: Int, collectionName: String){
-        self.id = id
-        self.name = name
+    public init(trackId: Int, trackName: String, artworkUrl100: String, collectionPrice: Double, collectionName: String, artistName: String){
+        self.trackId = trackId
+        self.trackName = trackName
+        self.artistName = artistName
         self.artworkUrl100 = artworkUrl100
         self.collectionPrice = collectionPrice
         self.collectionName = collectionName
