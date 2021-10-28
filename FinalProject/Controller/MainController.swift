@@ -15,25 +15,24 @@ class MainController: UICollectionViewController{
     //var musics = [Music]()
     
     //MARK: Init
+    let searchBar = UISearchBar()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewComponents()
-        fetchData()
+        //fetchData()
     }
     //MARK: API
     
     
     
-    func fetchData(){
+    func fetchData(term: String){
        
         do{
-            
             guard let request = try?
-                    SongResponse.buildURL(forTerm: "coldplay", forFilter: "song") else {return}
+                    SongResponse.buildURL(forTerm: term, forFilter: "song") else {return}
             
             fireApiCall(with: request) {result in
-                
                 switch result {
                 case .failure(let error):
                     print(error)
@@ -55,13 +54,17 @@ class MainController: UICollectionViewController{
     
     // MARK: Helper Function
     func configureViewComponents(){
+        searchBar.sizeToFit()
+        searchBar.delegate = self
         collectionView.backgroundColor = .white
         navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.9411764706, green: 0.4705882353, blue: 0.3921568627, alpha: 1)
         navigationItem.titleView?.tintColor = .white
         navigationController?.navigationBar.barStyle = .black
-        //navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.tintColor = .white
-        navigationItem.title = "Itunes"
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.tintColor = .blue
+        //navigationItem.title = "Itunes"
+        navigationItem.titleView = searchBar
+        searchBar.becomeFirstResponder() //gerekli mi????
         
         collectionView.register(MusicCell.self, forCellWithReuseIdentifier: reuseIdentifier)
        
@@ -96,5 +99,18 @@ extension MainController: UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = (view.frame.width - 36)/2
         return CGSize(width: width, height: width/1.5)
+    }
+}
+
+extension MainController: UISearchBarDelegate{
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        print("edit started")
+    }
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.count > 2 {
+            print (searchText)
+            fetchData(term: searchText)
+        }
     }
 }
