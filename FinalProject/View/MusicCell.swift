@@ -9,14 +9,14 @@ import Foundation
 import UIKit
 class MusicCell: UICollectionViewCell{
     
-    var music: Music?{
+    /*var music: Music?{
         didSet{
             nameLabel.text = music?.name?.capitalized
             imageView.image = music?.image
           
         }
         
-    }
+    }*/
     
     private lazy var shadowContainerView: UIView = {
         let view = UIView()

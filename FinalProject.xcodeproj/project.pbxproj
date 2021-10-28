@@ -8,10 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		187EE43B2728535C00EE10A5 /* MusicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187EE43A2728535C00EE10A5 /* MusicCell.swift */; };
-		187EE43D2728538B00EE10A5 /* Music.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187EE43C2728538B00EE10A5 /* Music.swift */; };
+		187EE43D2728538B00EE10A5 /* SongViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187EE43C2728538B00EE10A5 /* SongViewModel.swift */; };
 		187EE4402728541C00EE10A5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187EE43F2728541C00EE10A5 /* Extensions.swift */; };
 		187EE442272854DB00EE10A5 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187EE441272854DB00EE10A5 /* MainController.swift */; };
 		18BCEF892729A93600ECE6E1 /* DefaultNetworkOperationPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 18BCEF882729A93600ECE6E1 /* DefaultNetworkOperationPackage */; };
+		18BCEF8B2729B0AB00ECE6E1 /* SongRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BCEF8A2729B0AB00ECE6E1 /* SongRequest.swift */; };
+		18BCEF8E2729D2E700ECE6E1 /* SongServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BCEF8D2729D2E700ECE6E1 /* SongServiceProvider.swift */; };
+		18BCEF912729D3C000ECE6E1 /* EndpointHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BCEF902729D3C000ECE6E1 /* EndpointHelper.swift */; };
+		18BCEF932729DB5700ECE6E1 /* SongResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BCEF922729DB5700ECE6E1 /* SongResponse.swift */; };
 		18F256BE27272948002F8313 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F256BD27272948002F8313 /* AppDelegate.swift */; };
 		18F256C027272948002F8313 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F256BF27272948002F8313 /* SceneDelegate.swift */; };
 		18F256C227272948002F8313 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F256C127272948002F8313 /* ViewController.swift */; };
@@ -44,9 +48,13 @@
 
 /* Begin PBXFileReference section */
 		187EE43A2728535C00EE10A5 /* MusicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicCell.swift; sourceTree = "<group>"; };
-		187EE43C2728538B00EE10A5 /* Music.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Music.swift; sourceTree = "<group>"; };
+		187EE43C2728538B00EE10A5 /* SongViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongViewModel.swift; sourceTree = "<group>"; };
 		187EE43F2728541C00EE10A5 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		187EE441272854DB00EE10A5 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
+		18BCEF8A2729B0AB00ECE6E1 /* SongRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongRequest.swift; sourceTree = "<group>"; };
+		18BCEF8D2729D2E700ECE6E1 /* SongServiceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongServiceProvider.swift; sourceTree = "<group>"; };
+		18BCEF902729D3C000ECE6E1 /* EndpointHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointHelper.swift; sourceTree = "<group>"; };
+		18BCEF922729DB5700ECE6E1 /* SongResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongResponse.swift; sourceTree = "<group>"; };
 		18F256BA27272948002F8313 /* FinalProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinalProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18F256BD27272948002F8313 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18F256BF27272948002F8313 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -101,7 +109,9 @@
 		187EE4372728531300EE10A5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				187EE43C2728538B00EE10A5 /* Music.swift */,
+				187EE43C2728538B00EE10A5 /* SongViewModel.swift */,
+				18BCEF8A2729B0AB00ECE6E1 /* SongRequest.swift */,
+				18BCEF922729DB5700ECE6E1 /* SongResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -120,6 +130,22 @@
 				187EE43F2728541C00EE10A5 /* Extensions.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		18BCEF8C2729D2CC00ECE6E1 /* ServiceProviders */ = {
+			isa = PBXGroup;
+			children = (
+				18BCEF8D2729D2E700ECE6E1 /* SongServiceProvider.swift */,
+			);
+			path = ServiceProviders;
+			sourceTree = "<group>";
+		};
+		18BCEF8F2729D3A700ECE6E1 /* NetworkModules */ = {
+			isa = PBXGroup;
+			children = (
+				18BCEF902729D3C000ECE6E1 /* EndpointHelper.swift */,
+			);
+			path = NetworkModules;
 			sourceTree = "<group>";
 		};
 		18F256B127272948002F8313 = {
@@ -145,6 +171,8 @@
 		18F256BC27272948002F8313 /* FinalProject */ = {
 			isa = PBXGroup;
 			children = (
+				18BCEF8F2729D3A700ECE6E1 /* NetworkModules */,
+				18BCEF8C2729D2CC00ECE6E1 /* ServiceProviders */,
 				187EE43E2728540E00EE10A5 /* Utils */,
 				187EE4372728531300EE10A5 /* Model */,
 				187EE4362728530A00EE10A5 /* View */,
@@ -323,16 +351,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18BCEF8B2729B0AB00ECE6E1 /* SongRequest.swift in Sources */,
 				18F256C227272948002F8313 /* ViewController.swift in Sources */,
 				187EE4402728541C00EE10A5 /* Extensions.swift in Sources */,
+				18BCEF8E2729D2E700ECE6E1 /* SongServiceProvider.swift in Sources */,
 				18F256BE27272948002F8313 /* AppDelegate.swift in Sources */,
+				18BCEF912729D3C000ECE6E1 /* EndpointHelper.swift in Sources */,
 				187EE43B2728535C00EE10A5 /* MusicCell.swift in Sources */,
 				187EE442272854DB00EE10A5 /* MainController.swift in Sources */,
 				18F256C027272948002F8313 /* SceneDelegate.swift in Sources */,
+				18BCEF932729DB5700ECE6E1 /* SongResponse.swift in Sources */,
 				18F256EF27272F82002F8313 /* MainViewBuilder.swift in Sources */,
 				18F256F127272F9A002F8313 /* MainViewController.swift in Sources */,
 				18F256F327272FA5002F8313 /* MainViewModel.swift in Sources */,
-				187EE43D2728538B00EE10A5 /* Music.swift in Sources */,
+				187EE43D2728538B00EE10A5 /* SongViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

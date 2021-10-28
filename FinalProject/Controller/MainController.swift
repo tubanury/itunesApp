@@ -6,36 +6,56 @@
 //
 
 import UIKit
+import DefaultNetworkOperationPackage
 
 
 private let reuseIdentifier = "MusicCell"
 class MainController: UICollectionViewController{
     
-    
-    var musics = [Music]()
+    //var musics = [Music]()
     
     //MARK: Init
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewComponents()
-        fetchPokemon()
+        fetchData()
     }
     //MARK: API
     
-    func fetchPokemon(){
-        /*Service.shared.fetchPokemonData { (pokemons) in
-            DispatchQueue.main.async {
-                self.pokemons = pokemons
-                self.collectionView.reloadData()
+    
+    
+    func fetchData(){
+       
+        do{
+            
+            guard let request = try?
+                    SongResponse.buildURL(forTerm: "coldplay", forFilter: "song") else {return}
+            
+            fireApiCall(with: request) {result in
+                
+                switch result {
+                case .failure(let error):
+                    print(error)
+                case .success(let response):
+                    print(response)
+                }
             }
-        }*/
+            
+        }
     }
-        
+      
+    
+    private func fireApiCall(with request: URLRequest, with completion: @escaping (Result<SongResponse, ErrorResponse>) -> Void){
+        APIManager.shared.executeRequest(urlRequest: request, completion: completion)
+    }
+    
+    
+
+    
     // MARK: Helper Function
     func configureViewComponents(){
         collectionView.backgroundColor = .white
-        //navigationController?.navigationBar.barTintColor = .mainPink()
         navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.9411764706, green: 0.4705882353, blue: 0.3921568627, alpha: 1)
         navigationItem.titleView?.tintColor = .white
         navigationController?.navigationBar.barStyle = .black
