@@ -14,9 +14,12 @@ class MainController: UICollectionViewController{
     
     var songs = SongResponse(resultCount: 0, results: [])
     
+    
     //MARK: Init
     let searchBar = UISearchBar()
-    
+
+    //let segmentedControl = UISegmentedControl()
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewComponents()
@@ -60,6 +63,14 @@ class MainController: UICollectionViewController{
     func configureViewComponents(){
         searchBar.sizeToFit()
         searchBar.delegate = self
+        searchBar.scopeButtonTitles = ["Movies", "Music", "Apps", "Books"]
+        searchBar.showsScopeBar = true
+        /*segmentedControl.insertSegment(withTitle: "deneme", at: 0, animated: true)
+        segmentedControl.setTitle("test", forSegmentAt: 0)
+
+        segmentedControl.insertSegment(withTitle: "deneme2", at: 1, animated: true)
+        segmentedControl.setTitle("test2", forSegmentAt: 1)*/
+        
         collectionView.backgroundColor = .white
         navigationController?.navigationBar.barTintColor = .white
         navigationItem.titleView?.tintColor = .white
@@ -104,7 +115,7 @@ extension MainController: UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
       
         let width = (view.frame.width - 36)/2
-        return CGSize(width: width, height: width*1.35)
+        return CGSize(width: width, height: width*1.5)
     }
 }
 

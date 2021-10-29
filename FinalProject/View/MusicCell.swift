@@ -13,6 +13,7 @@ class MusicCell: UICollectionViewCell{
         didSet{
             nameLabel.text = (song?.trackName ?? "")
             artistLabel.text = (song?.artistName ?? "")
+            priceLabel.text = String(format: "%.2f", song?.collectionPrice ?? 0.0) + " $"
 
             print(song?.trackName ?? "")
            // imageView.image = song?.image
@@ -29,7 +30,6 @@ class MusicCell: UICollectionViewCell{
     private lazy var shadowContainerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .white
         view.layer.shadowColor = UIColor.black.cgColor
         view.layer.shadowOffset = CGSize(width: 0, height: 2)
         view.layer.shadowRadius = 4
@@ -52,21 +52,12 @@ class MusicCell: UICollectionViewCell{
         //temp.addSubview(containerView)
         
         //containerView.center(inView: temp)
-        temp.addSubview(stackView)
-        stackView.center(inView: temp)
+        temp.addSubview(stackView2)
+        stackView2.center(inView: temp)
         return temp
     }()
     
-    lazy var stackView: UIStackView = {
-        let temp = UIStackView(arrangedSubviews: [nameLabel, artistLabel])
-        temp.translatesAutoresizingMaskIntoConstraints = false
-        temp.alignment = .center
-        temp.distribution = .fill
-        temp.axis = .vertical
-        temp.spacing = 3
-        return temp
-        
-    }()
+   
     
     private lazy var containerView: UIView = {
         let view = UIView()
@@ -80,7 +71,36 @@ class MusicCell: UICollectionViewCell{
         //nameLabel.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 12, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         return view
     }()
-   
+    lazy var stackView3: UIStackView = {
+        let temp = UIStackView(arrangedSubviews: [imageView, mainContainerView])
+        temp.translatesAutoresizingMaskIntoConstraints = false
+        temp.alignment = .center
+        temp.distribution = .fill
+        temp.axis = .vertical
+        temp.spacing = 3
+        return temp
+        
+    }()
+    lazy var stackView2: UIStackView = {
+        let temp = UIStackView(arrangedSubviews: [stackView, priceLabel])
+        temp.translatesAutoresizingMaskIntoConstraints = false
+        temp.alignment = .center
+        temp.distribution = .fill
+        temp.axis = .vertical
+        temp.spacing = 3
+        return temp
+        
+    }()
+    lazy var stackView: UIStackView = {
+        let temp = UIStackView(arrangedSubviews: [nameLabel, artistLabel])
+        temp.translatesAutoresizingMaskIntoConstraints = false
+        temp.alignment = .center
+        temp.distribution = .fill
+        temp.axis = .vertical
+        temp.spacing = 3
+        return temp
+        
+    }()
     let nameLabel: UILabel = {
        let temp = UILabel()
         temp.textColor = .black
@@ -108,6 +128,21 @@ class MusicCell: UICollectionViewCell{
         return temp
     }()
     
+    let priceLabel: UILabel = {
+       let temp = UILabel()
+        temp.textColor = .systemBlue
+        temp.font = UIFont.systemFont(ofSize: 16)
+        temp.numberOfLines = 2
+        temp.layer.cornerRadius = 4
+        temp.layer.borderWidth = 1.0
+        temp.layer.borderColor = UIColor.blue.cgColor
+        temp.layer.masksToBounds = true
+        //temp.layer.cornerRadius = 10
+        //temp.backgroundColor = .white.withAlphaComponent(0.4)
+        temp.textAlignment = .center
+        
+        return temp
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -125,14 +160,16 @@ class MusicCell: UICollectionViewCell{
        
         addSubview(shadowContainerView)
         
-        shadowContainerView.anchor(top: nil, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 48)
+        shadowContainerView.anchor(top: nil, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 60)
         
-        shadowContainerView.addSubview(mainContainerView)
+        /*shadowContainerView.addSubview(mainContainerView)
         mainContainerView.anchor(top: shadowContainerView.topAnchor, left: shadowContainerView.leftAnchor, bottom: shadowContainerView.bottomAnchor, right: shadowContainerView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 48)
        
         addSubview(imageView)
 
-        imageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: self.frame.height - 32)
+        imageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: -10, paddingRight: 0, width: 0, height: self.frame.height - 70)*/
+        shadowContainerView.addSubview(stackView3)
+        stackView3.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: self.frame.height - 3)
         
     }
     
