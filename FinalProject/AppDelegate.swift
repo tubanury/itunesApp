@@ -14,6 +14,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        if #available(iOS 13.0, *) {
+
+            //UISegmentedControl.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = #colorLiteral(red: 0.9803921569, green: 0.7843137255, blue: 0.3137254902, alpha: 1)
+            UISegmentedControl.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = .white
+            UISegmentedControl.appearance(whenContainedInInstancesOf: [UISearchBar.self]).selectedSegmentTintColor = #colorLiteral(red: 0.9767697453, green: 0.5664579868, blue: 0.1543098092, alpha: 1)
+
         return true
     }
 
@@ -34,3 +40,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+}

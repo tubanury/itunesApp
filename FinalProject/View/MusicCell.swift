@@ -13,10 +13,10 @@ class MusicCell: UICollectionViewCell{
         didSet{
             nameLabel.text = (song?.trackName ?? "")
             artistLabel.text = (song?.artistName ?? "")
-            priceLabel.text = String(format: "%.2f", song?.collectionPrice ?? 0.0) + " $"
-
+            priceLabel.setTitle("$" + String(song?.collectionPrice ?? 0.0), for: .normal)
+            priceLabel.setTitleColor(.systemCyan,
+                                 for: .normal)
             print(song?.trackName ?? "")
-           // imageView.image = song?.image
             fetchImage(withUrlString: song?.artworkUrl100 ?? "") { image in
                 DispatchQueue.main.async {
                     self.imageView.image = image
@@ -25,6 +25,55 @@ class MusicCell: UICollectionViewCell{
             }
         }
         
+    }
+    var movie: Movie?{
+        didSet{
+            nameLabel.text = (movie?.trackName ?? "")
+            artistLabel.text = (movie?.primaryGenreName ?? "")
+          
+            priceLabel.setTitle("$" + String(movie?.collectionPrice ?? 0.0), for: .normal)
+            priceLabel.setTitleColor(.systemCyan,
+                                 for: .normal)
+            print(movie?.trackName ?? "")
+            fetchImage(withUrlString: movie?.artworkUrl100 ?? "") { image in
+                DispatchQueue.main.async {
+                    self.imageView.image = image
+                }
+                
+            }
+        }
+    }
+    var book: Book?{
+        didSet{
+            nameLabel.text = (book?.trackName ?? "")
+            artistLabel.text = (book?.artistName ?? "")
+          
+            priceLabel.setTitle(book?.formattedPrice ?? "", for: .normal)
+            priceLabel.setTitleColor(.systemCyan,
+                                 for: .normal)
+            fetchImage(withUrlString: book?.artworkUrl100 ?? "") { image in
+                DispatchQueue.main.async {
+                    self.imageView.image = image
+                }
+                
+            }
+        }
+    }
+    var app: App?{
+        didSet{
+            nameLabel.text = (app?.trackName ?? "")
+            artistLabel.text = (app?.primaryGenreName ?? "")
+          
+            priceLabel.setTitle(app?.formattedPrice ?? "", for: .normal)
+            priceLabel.setTitleColor(.systemCyan,
+                                 for: .normal)
+            fetchImage(withUrlString: app?.artworkUrl100 ?? "") { image in
+                DispatchQueue.main.async {
+                    self.imageView.image = image
+                }
+                
+            }
+        }
     }
     
     private lazy var shadowContainerView: UIView = {
@@ -128,9 +177,9 @@ class MusicCell: UICollectionViewCell{
         return temp
     }()
     
-    let priceLabel: UILabel = {
-       let temp = UILabel()
-        temp.textColor = .systemBlue
+    let priceLabel: UIButton = {
+       let temp = UIButton()
+        /*temp.textColor = .systemBlue
         temp.font = UIFont.systemFont(ofSize: 16)
         temp.numberOfLines = 2
         temp.layer.cornerRadius = 4
@@ -139,8 +188,12 @@ class MusicCell: UICollectionViewCell{
         temp.layer.masksToBounds = true
         //temp.layer.cornerRadius = 10
         //temp.backgroundColor = .white.withAlphaComponent(0.4)
-        temp.textAlignment = .center
-        
+        temp.textAlignment = .center*/
+        temp.tintColor = .systemBlue
+        temp.contentMode = .center
+        temp.titleLabel?.textAlignment = .center
+        temp.layer.borderColor = UIColor.blue.cgColor
+        temp.layer.cornerRadius = 4
         return temp
     }()
     

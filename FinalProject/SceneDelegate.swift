@@ -22,10 +22,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let layout = UICollectionViewFlowLayout()
         let navController = UINavigationController(rootViewController: MainController(collectionViewLayout: layout))
-       
-
+        //let navController = UINavigationController(rootViewController: EnMainController())
         navController.navigationBar.backgroundColor = .white
-        navController.navigationBar.tintColor  = .white
+        navController.navigationBar.tintColor = .white
+        
+        //navController.navigationBar.backgroundColor = .white
+        //navController.navigationBar.tintColor  = .white
         window?.rootViewController = navController
 
         window?.makeKeyAndVisible()

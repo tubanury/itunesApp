@@ -9,15 +9,9 @@ import Foundation
 import UIKit
 class SongResponse: Codable {
     
-    /*public let data: SongListData
-    public init(data: SongListData){
-        self.data = data
-    }*/
-    
-    
-    //private var dataTask: URLSessionDataTask?
+  
     public let resultCount: Int
-    public let results: [Song]
+    public var results: [Song]
     
     public init(resultCount: Int, results: [Song]){
        
@@ -25,28 +19,7 @@ class SongResponse: Codable {
         self.results = results
     }
     
-    
-   /* func loadSongs(searchTerm: String, completion: @escaping(([Song]) -> Void)) {
-        
-        dataTask?.cancel() //stop any executing task
-        guard let url = buildURL(forTerm: searchTerm, forFilter: "song") else {
-            completion([])
-            return
-        }
-        dataTask = URLSession.shared.dataTask(with: url) { data, _, _ in
-            guard let data = data else {
-                completion([])
-                return
-            }
-            if let songResponse = try? JSONDecoder().decode(SongList.self, from: data){
-                
-                completion(songResponse.results)
-            }
-        }
 
-        dataTask?.resume()
-        
-    }*/
     public class func buildURL(forTerm searchTerm: String, forFilter searchFilter: String? = nil) -> URLRequest? {
        
        guard !searchTerm.isEmpty else {return nil}
@@ -65,19 +38,8 @@ class SongResponse: Codable {
        return request
         
     
-}
-}
-/*public struct SongList: Codable {
-    
-    public let count: Int?
-    public let results: [Song]?
-    
-    public init(count: Int, results: [Song]){
-       
-        self.count = count
-        self.results = results
     }
-}*/
+}
 
 public struct Song: Codable {
     
