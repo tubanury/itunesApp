@@ -7,7 +7,7 @@ The App searchs from given text, filters search results by category and displays
 It also allows select item and displays a detail page of item.
 
 
-<img src="https://github.com/tubanury/itunesApp/blob/main/ScreenShots/books.png" width="250" height="480"><img src="https://github.com/tubanury/itunesApp/blob/main/ScreenShots/startPage.png" width="250" height="480">
+<img src="https://github.com/tubanury/itunesApp/blob/main/ScreenShots/startPage.png" width="250" height="480"><img src="https://github.com/tubanury/itunesApp/blob/main/ScreenShots/books.png" width="250" height="480">
 
 
 
