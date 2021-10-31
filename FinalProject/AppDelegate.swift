@@ -20,6 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UISegmentedControl.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = .white
             UISegmentedControl.appearance(whenContainedInInstancesOf: [UISearchBar.self]).selectedSegmentTintColor = #colorLiteral(red: 0.9767697453, green: 0.5664579868, blue: 0.1543098092, alpha: 1)
 
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithOpaqueBackground()
+            UINavigationBar.appearance().standardAppearance = appearance
+            UINavigationBar.appearance().scrollEdgeAppearance = appearance
         return true
     }
 

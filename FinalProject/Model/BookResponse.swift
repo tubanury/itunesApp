@@ -22,7 +22,7 @@ class BookResponse: Codable {
 
 public struct Book: Codable {
     
-    public let trackId: Int
+    public var trackId: Int
     public let trackName: String
     public let artistName: String
 

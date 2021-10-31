@@ -18,32 +18,11 @@ class SongResponse: Codable {
         self.resultCount = resultCount
         self.results = results
     }
-    
-
-    public class func buildURL(forTerm searchTerm: String, forFilter searchFilter: String? = nil) -> URLRequest? {
-       
-       guard !searchTerm.isEmpty else {return nil}
-       
-       let queryItems = [
-           URLQueryItem(name: "term", value: searchTerm),
-           URLQueryItem(name: "entity", value: searchFilter),
-       ]
-       
-       var components = URLComponents(string: "https://itunes.apple.com/search")
-       components?.queryItems = queryItems
-        guard let url = components?.url else {return nil}
-        var request = URLRequest(url: url)
-        request.httpMethod = "get"
-    
-       return request
-        
-    
-    }
 }
 
 public struct Song: Codable {
     
-    public let trackId: Int
+    public var trackId: Int
     public let trackName: String
     public let artistName: String
 

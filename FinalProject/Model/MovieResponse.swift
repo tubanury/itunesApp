@@ -22,16 +22,16 @@ class MovieResponse: Codable {
 
 public struct Movie: Codable {
     
-    public let trackId: Int
+    public var trackId: Int
     public let trackName: String
     public let artistName: String
 
     public let artworkUrl100: String
     public let collectionPrice: Double
     public let collectionName: String?
-    public let primaryGenreName: String
+    public let primaryGenreName: String?
     
-    public init(trackId: Int, trackName: String, artworkUrl100: String, collectionPrice: Double, collectionName: String?, artistName: String, primaryGenreName: String){
+    public init(trackId: Int, trackName: String, artworkUrl100: String, collectionPrice: Double, collectionName: String?, artistName: String, primaryGenreName: String?){
         self.trackId = trackId
         self.trackName = trackName
         self.artistName = artistName

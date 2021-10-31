@@ -13,13 +13,18 @@ private let reuseIdentifier = "MusicCell"
 
 class MainController: UICollectionViewController{
     
-
+    //pagination variables
+    var current_page = 0
+    var total_page = 1
+    var total_count = 0
+    
     var songs = SongResponse(resultCount: 0, results: [])
     var movies = MovieResponse(resultCount: 0, results: [])
     var books = BookResponse(resultCount: 0, results: [])
     var apps = AppResponse(resultCount: 0, results: [])
     //MARK: Init
     
+    private var detailViewController = DetailViewController()
     private var startSearchView = StartSearchView()
     let searchBar = UISearchBar()
     var searchWorkItem: DispatchWorkItem?
@@ -32,10 +37,13 @@ class MainController: UICollectionViewController{
 
         //fetchData()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.tintColor = .white
+
+    }
     //MARK: API
     
     private func addStartSearchView(){
-        //startSearchView = PermissionMainView(data: viewModel.getPermissionMainViewData())
         startSearchView.translatesAutoresizingMaskIntoConstraints =  false
         view.addSubview(startSearchView)
         
@@ -47,8 +55,8 @@ class MainController: UICollectionViewController{
         ])
     }
     
-    func fetchMusic(term: String, entity: String){
-        guard let request = SongResponse.buildURL(forTerm: term, forFilter: entity) else {return}
+    func fetchMusic(term: String, entity: String, page: String? = "0"){
+        guard let request = EndpointHelper.buildURL(forTerm: term, forFilter: entity, forPage: page) else {return}
 
         do{
             fireApiCallForMusic(with: request) {result in
@@ -70,8 +78,8 @@ class MainController: UICollectionViewController{
         }
     }
     
-    func fetchMovie(term: String, entity: String){
-        guard let request = SongResponse.buildURL(forTerm: term, forFilter: entity) else {return}
+    func fetchMovie(term: String, entity: String, page: String? = "0"){
+        guard let request = EndpointHelper.buildURL(forTerm: term, forFilter: entity, forPage: page) else {return}
 
         do{
             fireApiCallForMovie(with: request) {result in
@@ -93,8 +101,8 @@ class MainController: UICollectionViewController{
             
         }
     }
-    func fetchBook(term: String, entity: String){
-        guard let request = SongResponse.buildURL(forTerm: term, forFilter: entity) else {return}
+    func fetchBook(term: String, entity: String, page: String? = "0"){
+        guard let request = EndpointHelper.buildURL(forTerm: term, forFilter: entity, forPage: page) else {return}
 
         do{
             fireApiCallForBook(with: request) {result in
@@ -115,8 +123,8 @@ class MainController: UICollectionViewController{
             
         }
     }
-    func fetchApp(term: String, entity: String){
-        guard let request = SongResponse.buildURL(forTerm: term, forFilter: entity) else {return}
+    func fetchApp(term: String, entity: String, page: String? = "0"){
+        guard let request = EndpointHelper.buildURL(forTerm: term, forFilter: entity, forPage: page) else {return}
 
         do{
             fireApiCallForApp(with: request) {result in
@@ -138,7 +146,28 @@ class MainController: UICollectionViewController{
         }
     }
     
+    //Pagination func.
+    func loadMore(index: Int, searchText: String, page: String, completion: @escaping (Bool) -> Void) {
     
+        switch index {
+        case 0:
+            self.fetchMovie(term: searchText, entity: "movie", page: page)
+        case 1:
+            self.fetchMusic(term: searchText, entity: "song", page: page)
+        case 2:
+            self.fetchApp(term: searchText, entity: "software", page: page)
+        case 3:
+            self.fetchBook(term: searchText, entity: "ebook", page: page)
+        
+        default:
+            _ = 1
+
+        }
+        
+        self.collectionView.reloadData()
+        completion(true)
+            
+    }
     private func fireApiCallForMusic(with request: URLRequest, with completion: @escaping (Result<SongResponse, ErrorResponse>) -> Void){
         APIManager.shared.executeRequest(urlRequest: request, completion: completion)
     }
@@ -177,6 +206,9 @@ class MainController: UICollectionViewController{
        
        
     }
+    private func fireDetailView(){
+        navigationController?.pushViewController(DetailViewController(), animated: true)
+    }
     
 
 }
@@ -185,8 +217,6 @@ extension MainController{
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let index = searchBar.selectedScopeButtonIndex
-        print ("aaaaaa")
-        print (index)
         switch index{
             case 0:
                 return movies.resultCount
@@ -216,19 +246,65 @@ extension MainController{
             case 3:
                 cell.book = books.results[indexPath.item]
         default:
-            //cell.song = songs.results[indexPath.item]
-            let a = 1
+            _ = 1
         }
        
         return cell
     }
     
+    override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let index = searchBar.selectedScopeButtonIndex
+        guard let text = searchBar.text else {return}
+         var count = 0
+        switch index{
+            case 0:
+                count = movies.results.count
+            case 1:
+                count = songs.results.count
+            case 2:
+                count = apps.results.count
+            case 3:
+                count = books.results.count
+
+        default:
+            _ = 1
+        }
+        if current_page < total_page && indexPath.row == count - 1 {
+            current_page = current_page + 1
+            DispatchQueue.main.asyncAfter(deadline: .now() + 10) { [self] in
+                /*self.loadMore(index: index, searchText: text, page: String(current_page)) { loaded in
+                    if loaded {
+                        //todo
+                    }
+                }*/
+            }
+        }
+        print(indexPath)
+    }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print ("selected")
-        /*if let cell = collectionView.cellForItem(at: indexPath) as? MusicCell{
-    
-        }*/
+        //fireDetailView()
+        let index = searchBar.selectedScopeButtonIndex
+        if let cell = collectionView.cellForItem(at: indexPath) as? MusicCell{
+            
+        switch index{
+            case 0:
+                detailViewController.detailMovie = movies.results[indexPath.item]
+            case 1:
+                detailViewController.detailSong = songs.results[indexPath.item]
+            case 2:
+                detailViewController.detailApp = apps.results[indexPath.item]
+            case 3:
+                detailViewController.detailBook = books.results[indexPath.item]
+
+        default:
+            let a = 1
+        }
+            navigationController?.pushViewController(detailViewController, animated: true)
+
+            
+        }
     }
 }
 

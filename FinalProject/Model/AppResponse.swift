@@ -23,7 +23,7 @@ class AppResponse: Codable {
 
 public struct App: Codable {
     
-    public let trackId: Int
+    public var trackId: Int
     public let trackName: String
 
     public let artworkUrl100: String
@@ -31,7 +31,7 @@ public struct App: Codable {
     //public let collectionName: String?
     public let primaryGenreName: String?
     
-    public init(trackId: Int, trackName: String, artworkUrl100: String, formattedPrice: String, primaryGenreName: String){
+    public init(trackId: Int, trackName: String, artworkUrl100: String, formattedPrice: String, primaryGenreName: String?){
         self.trackId = trackId
         self.trackName = trackName
         self.artworkUrl100 = artworkUrl100

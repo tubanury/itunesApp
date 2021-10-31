@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  DetailView.swift
 //  FinalProject
 //
 //  Created by Tuba Nur on 30.10.2021.
@@ -10,6 +10,62 @@ import Foundation
 import UIKit
 
 class DetailView: UIView{
+    
+    
+    var song: Song?{
+        didSet{
+            searchLabel.text = (song?.trackName ?? "")
+           
+            print(song?.trackName ?? "")
+            fetchImage(withUrlString: song?.artworkUrl100 ?? "") { image in
+                DispatchQueue.main.async {
+                    self.searchImage.image = image
+                }
+                
+            }
+        }
+        
+    }
+    var movie: Movie?{
+        didSet{
+            searchLabel.text = (movie?.trackName ?? "")
+            fetchImage(withUrlString: movie?.artworkUrl100 ?? "") { image in
+                DispatchQueue.main.async {
+                    self.searchImage.image = image
+                }
+                
+            }
+        }
+        
+    }
+    var app: App?{
+        didSet{
+            searchLabel.text = (app?.trackName ?? "")
+           
+            fetchImage(withUrlString: app?.artworkUrl100 ?? "") { image in
+                DispatchQueue.main.async {
+                    self.searchImage.image = image
+                }
+                
+            }
+        }
+        
+    }
+    var book: Book?{
+        didSet{
+            searchLabel.text = (book?.trackName ?? "")
+            fetchImage(withUrlString: book?.artworkUrl100 ?? "") { image in
+                DispatchQueue.main.async {
+                    self.searchImage.image = image
+                }
+                
+            }
+        }
+        
+    }
+    
+    
+    
     
     private lazy var containerView: UIView = {
        let temp = UIView()
@@ -33,6 +89,7 @@ class DetailView: UIView{
         
         
     }()
+  
  
     private lazy var searchImage: UIImageView = {
         let temp = UIImageView()
@@ -45,7 +102,14 @@ class DetailView: UIView{
     
     private lazy var searchLabel: UILabel = {
         let temp =  UILabel()
-        temp.text = "Detail Page"
+        temp.text = "Waiting to search!"
+        temp.translatesAutoresizingMaskIntoConstraints = false
+        return temp
+        
+    }()
+    private lazy var priceLabel: UILabel = {
+        let temp =  UILabel()
+        temp.text = "9.99"
         temp.translatesAutoresizingMaskIntoConstraints = false
         return temp
         
@@ -82,4 +146,20 @@ class DetailView: UIView{
         containerView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
     }
     
+    private func fetchImage(withUrlString urlString: String, completion: @escaping(UIImage)->()){
+        
+        guard let url  = URL(string: urlString) else {return}
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            if let error =  error {
+                print ("fetchin image error", error.localizedDescription)
+                return
+            }
+            
+            guard let data  = data  else {return}
+            guard let image = UIImage(data: data) else {return}
+            
+            completion(image)
+        }.resume()
+    }
 }

@@ -7,22 +7,27 @@
 
 import Foundation
 
-typealias baseUrl = EndpointHelper.BaseUrls
-typealias entity = EndpointHelper.Entity
+class EndpointHelper {
+    public class func buildURL(forTerm searchTerm: String, forFilter searchFilter: String? = nil, forPage page: String? = "0" ) -> URLRequest? {
+       
+       guard !searchTerm.isEmpty else {return nil}
+       
+       let queryItems = [
+           URLQueryItem(name: "term", value: searchTerm),
+           URLQueryItem(name: "entity", value: searchFilter),
+           URLQueryItem(name: "limit", value: "20"),
+           URLQueryItem(name: "offset", value: page),
+       ]
+      
+       
+       var components = URLComponents(string: "https://itunes.apple.com/search")
+       components?.queryItems = queryItems
+        guard let url = components?.url else {return nil}
+        var request = URLRequest(url: url)
+        request.httpMethod = "get"
+    
+       return request
 
-enum EndpointHelper {
-    
-    enum BaseUrls: String {
-        case dev = "https://itunes.apple.com/search"
     }
-    
-    enum Entity: String {
-        case song  = "music"
-        case movie = "movie"
-        case app = "software"
-        case book = "ebook"
-    }
-    
-    
     
 }
