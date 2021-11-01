@@ -30,8 +30,9 @@ public struct Movie: Codable {
     public let collectionPrice: Double
     public let collectionName: String?
     public let primaryGenreName: String?
-    
-    public init(trackId: Int, trackName: String, artworkUrl100: String, collectionPrice: Double, collectionName: String?, artistName: String, primaryGenreName: String?){
+    public var releaseDate: String
+
+    public init(trackId: Int, trackName: String, artworkUrl100: String, collectionPrice: Double, collectionName: String?, artistName: String, primaryGenreName: String?, releaseDate: String){
         self.trackId = trackId
         self.trackName = trackName
         self.artistName = artistName
@@ -39,6 +40,6 @@ public struct Movie: Codable {
         self.collectionPrice = collectionPrice
         self.collectionName = collectionName
         self.primaryGenreName = primaryGenreName
-
+        self.releaseDate = releaseDate
     }
 }

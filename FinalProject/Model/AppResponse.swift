@@ -30,13 +30,14 @@ public struct App: Codable {
     public let formattedPrice: String
     //public let collectionName: String?
     public let primaryGenreName: String?
-    
-    public init(trackId: Int, trackName: String, artworkUrl100: String, formattedPrice: String, primaryGenreName: String?){
+    public var releaseDate: String
+
+    public init(trackId: Int, trackName: String, artworkUrl100: String, formattedPrice: String, primaryGenreName: String?, releaseDate: String){
         self.trackId = trackId
         self.trackName = trackName
         self.artworkUrl100 = artworkUrl100
         self.formattedPrice = formattedPrice
         self.primaryGenreName = primaryGenreName
-
+        self.releaseDate = releaseDate
     }
 }

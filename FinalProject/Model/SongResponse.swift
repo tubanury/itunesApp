@@ -29,14 +29,20 @@ public struct Song: Codable {
     public let artworkUrl100: String
     public let collectionPrice: Double
     public let collectionName: String
+    public var releaseDate: String
     
-    public init(trackId: Int, trackName: String, artworkUrl100: String, collectionPrice: Double, collectionName: String, artistName: String){
+    public init(trackId: Int, trackName: String, artworkUrl100: String, collectionPrice: Double, collectionName: String, artistName: String, releaseDate: String){
         self.trackId = trackId
         self.trackName = trackName
         self.artistName = artistName
         self.artworkUrl100 = artworkUrl100
         self.collectionPrice = collectionPrice
         self.collectionName = collectionName
+        self.releaseDate = releaseDate
+
+       
+
+        
     }
 }
 

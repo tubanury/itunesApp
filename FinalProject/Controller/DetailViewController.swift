@@ -11,10 +11,10 @@ import UIKit
 
 class DetailViewController: UIViewController{
     
-    var detailSong = Song(trackId: 0, trackName: "", artworkUrl100: "", collectionPrice: 0.0, collectionName: "", artistName: "")
-    var detailMovie = Movie(trackId: 0, trackName: "", artworkUrl100: "", collectionPrice: 0.0, collectionName: "", artistName: "", primaryGenreName: "")
-    var detailApp = App(trackId: 0, trackName: "", artworkUrl100: "", formattedPrice: "", primaryGenreName: "")
-    var detailBook = Book(trackId: 0, trackName: "", artworkUrl100: "", formattedPrice: "", collectionName: "", artistName: "")
+    var detailSong = Song(trackId: 0, trackName: "", artworkUrl100: "", collectionPrice: 0.0, collectionName: "", artistName: "", releaseDate: "")
+    var detailMovie = Movie(trackId: 0, trackName: "", artworkUrl100: "", collectionPrice: 0.0, collectionName: "", artistName: "", primaryGenreName: "", releaseDate: "")
+    var detailApp = App(trackId: 0, trackName: "", artworkUrl100: "", formattedPrice: "", primaryGenreName: "", releaseDate: "")
+    var detailBook = Book(trackId: 0, trackName: "", artworkUrl100: "", formattedPrice: "", collectionName: "", artistName: "", releaseDate: "")
     
     let detailView = DetailView()
    

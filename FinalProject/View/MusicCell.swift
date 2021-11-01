@@ -14,9 +14,9 @@ class MusicCell: UICollectionViewCell{
             nameLabel.text = (song?.trackName ?? "")
             artistLabel.text = (song?.artistName ?? "")
             priceLabel.setTitle("$" + String(song?.collectionPrice ?? 0.0), for: .normal)
-            priceLabel.setTitleColor(.systemCyan,
-                                 for: .normal)
-            print(song?.trackName ?? "")
+            
+            priceLabel.setTitleColor(.systemCyan, for: .normal)
+            dateLabel.text = (getFormattedDate(unformatted: song?.releaseDate ?? ""))
             fetchImage(withUrlString: song?.artworkUrl100 ?? "") { image in
                 DispatchQueue.main.async {
                     self.imageView.image = image
@@ -34,7 +34,8 @@ class MusicCell: UICollectionViewCell{
             priceLabel.setTitle("$" + String(movie?.collectionPrice ?? 0.0), for: .normal)
             priceLabel.setTitleColor(.systemCyan,
                                  for: .normal)
-            print(movie?.trackName ?? "")
+            dateLabel.text = (getFormattedDate(unformatted: movie?.releaseDate ?? ""))
+
             fetchImage(withUrlString: movie?.artworkUrl100 ?? "") { image in
                 DispatchQueue.main.async {
                     self.imageView.image = image
@@ -51,6 +52,8 @@ class MusicCell: UICollectionViewCell{
             priceLabel.setTitle(book?.formattedPrice ?? "", for: .normal)
             priceLabel.setTitleColor(.systemCyan,
                                  for: .normal)
+            dateLabel.text = (getFormattedDate(unformatted: book?.releaseDate ?? ""))
+
             fetchImage(withUrlString: book?.artworkUrl100 ?? "") { image in
                 DispatchQueue.main.async {
                     self.imageView.image = image
@@ -67,6 +70,8 @@ class MusicCell: UICollectionViewCell{
             priceLabel.setTitle(app?.formattedPrice ?? "", for: .normal)
             priceLabel.setTitleColor(.systemCyan,
                                  for: .normal)
+            dateLabel.text = (getFormattedDate(unformatted: app?.releaseDate ?? ""))
+
             fetchImage(withUrlString: app?.artworkUrl100 ?? "") { image in
                 DispatchQueue.main.async {
                     self.imageView.image = image
@@ -124,29 +129,35 @@ class MusicCell: UICollectionViewCell{
         let temp = UIStackView(arrangedSubviews: [imageView, mainContainerView])
         temp.translatesAutoresizingMaskIntoConstraints = false
         temp.alignment = .center
-        temp.distribution = .fill
+        //temp.distribution = .fill
         temp.axis = .vertical
         temp.spacing = 3
         return temp
         
     }()
     lazy var stackView2: UIStackView = {
-        let temp = UIStackView(arrangedSubviews: [stackView, priceLabel])
+        //let temp = UIStackView(arrangedSubviews: [stackView, priceLabel])
+        let temp = UIStackView(arrangedSubviews: [stackView, priceDateStack])
+
         temp.translatesAutoresizingMaskIntoConstraints = false
         temp.alignment = .center
-        temp.distribution = .fill
+        //temp.distribution = .fill
         temp.axis = .vertical
         temp.spacing = 3
         return temp
         
     }()
     lazy var stackView: UIStackView = {
+        
         let temp = UIStackView(arrangedSubviews: [nameLabel, artistLabel])
         temp.translatesAutoresizingMaskIntoConstraints = false
+    
         temp.alignment = .center
-        temp.distribution = .fill
+        //temp.distribution = .fill
         temp.axis = .vertical
         temp.spacing = 3
+        
+
         return temp
         
     }()
@@ -155,7 +166,8 @@ class MusicCell: UICollectionViewCell{
         temp.textColor = .black
         temp.font = UIFont.systemFont(ofSize: 16)
         temp.text = "Some Music"
-        temp.numberOfLines = 2
+        temp.numberOfLines = 0
+        temp.lineBreakMode = .byTruncatingTail
         //temp.layer.masksToBounds = true
         //temp.layer.cornerRadius = 10
         //temp.backgroundColor = .white.withAlphaComponent(0.4)
@@ -168,33 +180,47 @@ class MusicCell: UICollectionViewCell{
         temp.textColor = .secondaryLabel
         temp.font = UIFont.systemFont(ofSize: 16)
         temp.text = "Some Music"
-        temp.numberOfLines = 2
-        //temp.layer.masksToBounds = true
-        //temp.layer.cornerRadius = 10
-        //temp.backgroundColor = .white.withAlphaComponent(0.4)
+        temp.numberOfLines = 0
+        temp.lineBreakMode = .byTruncatingTail
         temp.textAlignment = .center
         
         return temp
     }()
-    
+    lazy var priceDateStack: UIStackView = {
+        let temp = UIStackView(arrangedSubviews: [priceLabel, dateLabel])
+        temp.translatesAutoresizingMaskIntoConstraints = false
+        temp.alignment = .center
+        temp.distribution = .fill
+        temp.axis = .horizontal
+        temp.spacing = 10
+        return temp
+        
+    }()
     let priceLabel: UIButton = {
        let temp = UIButton()
-        /*temp.textColor = .systemBlue
-        temp.font = UIFont.systemFont(ofSize: 16)
-        temp.numberOfLines = 2
-        temp.layer.cornerRadius = 4
-        temp.layer.borderWidth = 1.0
-        temp.layer.borderColor = UIColor.blue.cgColor
-        temp.layer.masksToBounds = true
-        //temp.layer.cornerRadius = 10
-        //temp.backgroundColor = .white.withAlphaComponent(0.4)
-        temp.textAlignment = .center*/
+       
         temp.tintColor = .systemBlue
-        temp.contentMode = .center
+        //temp.contentMode = .center
+        temp.contentMode = .left
         temp.titleLabel?.textAlignment = .center
         temp.layer.borderColor = UIColor.blue.cgColor
         temp.layer.cornerRadius = 4
         return temp
+    }()
+    let dateLabel: UILabel = {
+        let temp = UILabel()
+        temp.textColor = .secondaryLabel
+        temp.font = UIFont.systemFont(ofSize: 16)
+        temp.text = "Some Music"
+        temp.numberOfLines = 2
+        //temp.layer.masksToBounds = true
+        //temp.layer.cornerRadius = 10
+        //temp.backgroundColor = .white.withAlphaComponent(0.4)
+        //temp.textAlignment = .center
+        temp.textAlignment = .right
+        
+        return temp
+        
     }()
     
     override init(frame: CGRect) {

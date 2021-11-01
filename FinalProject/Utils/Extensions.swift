@@ -40,3 +40,19 @@ extension UIView{
     
     
 }
+
+
+extension MusicCell{
+    func getFormattedDate(unformatted: String) -> String{
+        
+        let dateFormatterGet = DateFormatter()
+        dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.dateFormat = "yyyy"
+        let formatted = dateFormatterGet.date(from: unformatted)
+        
+        return dateFormatterPrint.string(from: formatted ?? Date())
+        
+    }
+}
